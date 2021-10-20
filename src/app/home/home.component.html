@@ -1,0 +1,52 @@
+
+<nav class="navbar navbar-expand-lg navbar-light">
+   <div class="heading" style="margin:auto">SET YOUR SESSION APP</div>
+</nav>
+<div class="container">
+    <!-- First Session-->
+    <div class ="row">
+        <div class ="col-sm">
+            <div class ="card shadow-sm bg-white rounded">
+                <div class="card-title heading"> 
+                    Schedule first sesssion 
+                </div>
+                <div class="card-body"> 
+                    <form [formGroup]="sessionRecord">
+                        <div class="mb-3 form-group">
+                            <label class="time-label-start">Start time</label>
+                            <input 
+                               type="time" 
+                               placeholder="Start Time"
+                               formControlName="starttime"
+                               class="timer-input"
+                               id="firstTime">
+                        </div>
+    
+                        <div class="mb-3 form-group">
+                             <label class="time-label-end">End time</label>
+                              <input 
+                                type="time" 
+                                placeholder="End Time"
+                                formControlName="endtime"
+                                class="timer-input"
+                                id="secondTime">
+                        </div>
+                        <div class="mb-3 form-group">
+                           <button 
+                              class="btn btn-primary" 
+                              type="submit"
+                              (click)="session2()">
+                              Schedule
+                            </button>
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+
+   
+  
+</div>
+</div>
+

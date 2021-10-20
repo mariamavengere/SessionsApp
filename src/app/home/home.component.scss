@@ -1,0 +1,41 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar{
+    height: 90px;
+    background-color: #1E90FF;
+   // box-shadow: 0 8px 8px -4px lightblue;   
+}
+.heading{
+    color: #fff;
+    font-weight: 500;
+    font-size: 25px;
+    padding: 1rem;
+}
+.timer-input {
+    width: 100%
+}
+
+.card{
+    top: 20px;
+    width: 30rem;
+    margin:auto;
+}
+.card-title{
+    background-color: #1E90FF;  
+}
+.card-body{
+ padding: 20px
+}
+.time-label-start{
+    margin-right: 10px;
+    font-weight: 500
+}
+.time-label-end{
+    margin-right: 16px;
+    font-weight: 500
+}
+.btn{
+    float:right;
+}
