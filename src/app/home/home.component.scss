@@ -25,6 +25,9 @@ body{
 .card-title{
     background-color: #1E90FF;  
 }
+.btn-secondary{
+margin-left: 10px;
+}
 .card-body{
  padding: 20px
 }
@@ -38,4 +41,13 @@ body{
 }
 .btn{
     float:right;
+}
+.response{
+    display: block;
+    width: 100%;
+    margin: auto;
+    color:#1E90FF;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 40px!important;
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, Validators} from "@angular/forms";
+import { FormBuilder, FormArray, Validators, FormGroup, FormControl} from "@angular/forms";
+import * as moment from 'moment';
+import { Moment, now } from 'moment';
 
 @Component({
   selector: 'home',
@@ -9,16 +11,9 @@ import { FormBuilder, FormArray, Validators} from "@angular/forms";
 
 
 export class HomeComponent implements OnInit {
-  difference: any;
-  timeStart: any;
-  timeEnd: any;
-  firtsTime: any;  
-  secondTime: any;
-  diff_result: any;
-  hourDiff: any;
-  i: any;
-
-  
+  timeStart!: number;
+  timeEnd!: number;
+  s!: string;
 
 
   constructor(
@@ -26,44 +21,35 @@ export class HomeComponent implements OnInit {
   ) { }
 
 
-  sessionRecord = this.fb.group({
-    starttime: ['', [Validators.required]],
-    endtime: ['', [Validators.required]],
-  });
+  sessionRecord = new FormGroup({
+    starttime: new FormControl ('', [Validators.required, Validators.minLength(1)]),
+    endtime: new FormControl('', [Validators.required, Validators.minLength(1)]),
+  })
+  get f() {
+    return this.sessionRecord.controls;
+  }
    formatTime(timeStr: any) {
     
-    const hours = timeStr.toString().substring(0, 2);
-    const mins = timeStr.toString().substring(3, 5);
-  
-    const isTwelve = parseInt(hours) === 0 || parseInt(hours) === 12;
-    const isPM = parseInt(hours) >= 12;
+}
 
-    return `${isTwelve ? "12" : isPM ? `0${parseInt(hours) % 12}` : hours}:${mins} ${isPM ? "PM" : "AM"}`
+onReset(){
+  this.sessionRecord.reset()
 }
   session2(){
-   const timeStart = document.querySelector<HTMLInputElement>("#firstTime")!.value;
+
+    const timeStart = document.querySelector<HTMLInputElement>("#firstTime")!.value;
    const timeEnd = document.querySelector<HTMLInputElement>("#secondTime")!.value;
-   const difference =(this.timeStart-this.timeEnd)
-   
-     alert(difference)
+
+   const ms = moment(timeStart," HH:mm").diff(moment(timeEnd,"HH:mm"));
+   const d = moment.duration(ms);
+   const s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+  
+  const element: HTMLElement = document.getElementById('third') as HTMLElement;
+    element.innerHTML = 'The session duration is' + '' +'' + s + 'hrs';
+
     }
     
-  session(){
-  /*  let timeStart: Date;
-    let timeEnd: Date;
-    const firtsTime = document.getElementById('firstTime');
-    const secondTime = document.getElementById('secondTime');
 
-    timeStart = new Date();
-    /*timeEnd = new Date("20/10/2021" + secondTime);
-    let difference = this.timeStart - this.timeEnd;             
-    let diff_result = new Date(difference);  
-     
-    let hourDiff = diff_result.getHours();*/
-         
- // alert("Hour Difference:" + firtsTime);            
-
-  }
   
   ngOnInit(): void {
 
@@ -73,15 +59,5 @@ export class HomeComponent implements OnInit {
 
 
 
-function session2() {
-  throw new Error('Function not implemented.');
-}
 
-function session() {
-  throw new Error('Function not implemented.');
-}
-
-function ngOnInit() {
-  throw new Error('Function not implemented.');
-}
 

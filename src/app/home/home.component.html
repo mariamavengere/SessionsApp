@@ -21,7 +21,10 @@
                                class="timer-input"
                                id="firstTime">
                         </div>
-    
+                        <div 
+                        *ngIf="f.starttime.invalid && f.starttime.touched" 
+                         class="alert alert-danger error-messages">Please enter the session start time
+                      </div>
                         <div class="mb-3 form-group">
                              <label class="time-label-end">End time</label>
                               <input 
@@ -31,22 +34,40 @@
                                 class="timer-input"
                                 id="secondTime">
                         </div>
+                        <div 
+                        *ngIf="f.endtime.invalid && f.endtime.touched" 
+                         class="alert alert-danger error-messages">Please enter the session end time
+                      </div>
+                      
                         <div class="mb-3 form-group">
+                            <button 
+                            type="button" 
+                            (click)="onReset()"
+                            class="btn btn-secondary">Reset
+                         </button>
                            <button 
                               class="btn btn-primary" 
                               type="submit"
+                              [disabled]="!sessionRecord.valid"
                               (click)="session2()">
                               Schedule
                             </button>
                         </div>
                        
                     </form>
+                    
                 </div>
             </div>
+            
         </div>
 
    
   
+</div>
+<div class="row">
+  <div class ="col-sm">
+    <div id="third" class="response"></div>
+   </div>
 </div>
 </div>
 
